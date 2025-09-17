@@ -1,25 +1,21 @@
-//your JS code here. If required.
-const inputs = document.querySelectorAll(".code");
+const codes = document.querySelectorAll('.code');
 
-inputs.forEach((input, index) => {
-  input.addEventListener("input", (e) => {
-    // allow only digits
-    if (!/^\d$/.test(e.target.value)) {
-      e.target.value = "";
-      return;
-    }
-    
-    if (input.value && index < inputs.length - 1) {
-      inputs[index + 1].focus();
+
+codes[0].focus();
+
+codes.forEach((input, idx) => {
+  input.addEventListener('input', (e) => {
+    const value = e.target.value;
+
+    if (value && idx < codes.length - 1) {
+      codes[idx + 1].focus();
     }
   });
 
-  input.addEventListener("keydown", (e) => {
-    if (e.key === "Backspace") {
-      if (input.value === "" && index > 0) {
-        inputs[index - 1].focus();
-        inputs[index - 1].value = "";
-      }
+  input.addEventListener('keydown', (e) => {
+    if (e.key === "Backspace" && !input.value && idx > 0) {
+      codes[idx - 1].focus();
+      codes[idx - 1].value = "";
     }
   });
 });
